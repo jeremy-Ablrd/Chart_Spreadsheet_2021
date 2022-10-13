@@ -59,6 +59,6 @@ print_text(0.55, 0.35, str(value_percent[1]) + "%", 25, "black", 'top', 'center'
 print_text(1.75, 0.18, f"({str(value_percent[2])}" + "%)", 19, "black", 'top', 'center')         #Wind
 print_text(1.85, 0.09, f"({str(value_percent[3])}" + "%)", 19, "black", 'top', 'center',)       #Solar
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_spreadsheet/Chart"
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Chart"
 plt.savefig(f'{path_savefig}/piechart_spread_EnGen.png', transparent=True, dpi=300)
 plt.show()
