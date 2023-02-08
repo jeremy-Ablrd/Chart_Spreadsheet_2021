@@ -27,15 +27,31 @@ new_df_solar = pd.DataFrame(dict_year_FEC)
 new_df = pd.concat([new_df_wind, new_df_solar], ignore_index=True)
 print(new_df)
 
-plt.figure(figsize=(9, 6))
-ax = sns.barplot(x='Year', y='GWh', hue='', data=new_df, palette='inferno', saturation=0.3)
-plt.ylim(0, 8)
-plt.legend(loc='upper left')
+# -- Chart Setting -- #
+sns.set(style='ticks')
+plt.figure(figsize=(12, 9))
+colors = ['#45B193', '#9E7592']
+ax = sns.barplot(x='Year', y='GWh', hue='', data=new_df, palette=colors)
+
+
 for container in ax.containers:
-    ax.bar_label(container)
+    ax.bar_label(container, fontsize=18, fontweight='bold')
 
-plt.title('Electricity Generation from Renewable Energy', fontweight="bold")
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure/Trend_Electricity_2010-2021"
-plt.savefig(f'{path_savefig}/barchart_spread_ElectGen_RenewEnerg.png', transparent=True, dpi=300)
+# ----- Title ----- #
+plt.title('Electricity Generation from Renewable Energy', fontsize=21, fontweight="bold")
 
+# ----- Axis ----- #
+font_size_label = 18
+plt.xlim(2, 12)
+plt.xlabel('Year', fontsize=font_size_label, fontweight='bold')
+plt.xticks(rotation=0, fontsize=font_size_label)
+plt.ylim(0, 15)
+plt.ylabel('GWh', fontsize=font_size_label, fontweight='bold')
+plt.yticks(fontsize=font_size_label)
+
+# ----- Legend ----- #
+plt.legend(loc='upper left', fontsize=16)
+
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
+plt.savefig(f'{path_savefig}/barchart_spread_ElectGen_RenewEnerg.png', transparent=False, dpi=300)
 plt.show()

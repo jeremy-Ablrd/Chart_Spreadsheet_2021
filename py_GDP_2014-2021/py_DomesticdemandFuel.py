@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import numpy as np
 
 """
 Line chart:
@@ -48,29 +49,35 @@ for line in list_line:
 
 print(df)
 
-sns.set(style='white')
-colors = ['#8F79CA', '#518D87']
-ax = df.plot(kind='bar', stacked=True, color=None, figsize=(12, 9))
+sns.set(style='dark')
+colors = ['#573F06', '#704E5D', '#656543', '#AC9C61', '#68220D']
+ax = df.plot(kind='bar', stacked=True, color=colors, figsize=(12, 9))
 
 label_color = ['black' for i in range(0, len(list_fuel))]
 
-for i, container in enumerate(ax.containers):
-    ax.bar_label(container, color=label_color[i], label_type='center', padding=0)
+for i, container in enumerate(ax.containers[:4]):
+    ax.bar_label(container, color=label_color[i], label_type='center', padding=0, fontsize=15, fontweight='bold')
 
-plt.title('Total Domestic Demand', fontsize=16)
+for i, container in enumerate(ax.containers[4:]):
+    contain_int = np.int_(container.datavalues)
+    ax.bar_label(container, labels=contain_int, color=label_color[i], label_type='edge', padding=0, fontsize=15, fontweight='bold')
+
+
+plt.title('Total Domestic Demand', fontsize=22, fontweight='bold')
 plt.grid(visible=True, axis='y')
 
-plt.xlabel('Year')
-plt.xticks(rotation=0)
+plt.xlabel('Year', fontsize=16, fontweight='bold')
+plt.xticks(rotation=0, fontsize=16, fontweight='bold')
 # plt.xlim(2013, 2021)
-plt.ylabel('Metric Ton (MT)')
+plt.ylabel('Metric Ton (MT)', fontsize=16, fontweight='bold')
+plt.yticks(fontsize=16)
 
 
 handles, labels = plt.gca().get_legend_handles_labels()
 order = [4, 3, 2, 1, 0]
-plt.legend([handles[i] for i in order], [labels[i] for i in order])
+plt.legend([handles[i] for i in order], [labels[i] for i in order], fontsize=12)
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure_GDP"
-plt.savefig(f'{path_savefig}/barchartDetailled_spread_DomesticDemandFuel.png', transparent=True, dpi=300)
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
+plt.savefig(f'{path_savefig}/figure20_DomesticDemandFuel.png', transparent=False, dpi=300)
 
 plt.show()

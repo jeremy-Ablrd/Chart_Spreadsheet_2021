@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 path = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Spreadsheet for the preparation of Energy Reports ver-9_Update_returned_4Oct22.xlsx"
 file = pd.read_excel(path, sheet_name="Growth 2010-2021", header=69, index_col=1)
@@ -30,29 +31,38 @@ for columns in new_df.columns:
 
 print(new_df)
 
+sns.set(style='dark')
+colors = ['#DD8452', '#4C72B0', '#55A868', '#EE0609', '#B4B4B8', '#F7AD19']
+ax = new_df.plot(kind='bar', stacked=True, color=colors, figsize=(12, 9))
 
-sns.set(style='white')
-colors = ['#8F79CA', '#518D87']
-ax = new_df.plot(kind='bar', stacked=True, color=None, figsize=(12, 9))
+label_color = ['black' for i in range(len(new_df))]
+font_size_label = 16
 
-label_color = ['black', 'black', 'black', 'black', 'black', 'red']
+for i, container in enumerate(ax.containers[:5]):
+    cont_int = np.int_(container.datavalues)
+    ax.bar_label(container, color=label_color[i], labels=cont_int, label_type='center',  fontsize=font_size_label, fontweight='bold', padding=0)
 
-for i, container in enumerate(ax.containers):
-    ax.bar_label(container, color=label_color[i], label_type='center', padding=0)
+for i, container in enumerate(ax.containers[5:]):
+    cont_int = np.round(container.datavalues, 2)
+    ax.bar_label(container, color='black', labels=cont_int, label_type='edge',  fontsize=font_size_label, fontweight='bold', padding=0)
 
-plt.title('Electricity Consumption by Sector (includ. losses)', fontsize=16)
+plt.title('Electricity Consumption by Sector (includ. losses)', fontsize=20, fontweight='bold')
 plt.grid(visible=True, axis='y')
 
-plt.xlabel('Year')
-plt.xticks(rotation=0)
 # plt.xlim(2013, 2021)
-plt.ylabel('GWh')
 
+plt.xlabel('Year', fontsize=font_size_label, fontweight='bold')
+plt.xticks(rotation=0, fontsize=font_size_label)
+plt.ylim(0, 555)
+plt.ylabel('GWh', fontsize=font_size_label, fontweight='bold')
+plt.yticks(fontsize=font_size_label)
 
 handles, labels = plt.gca().get_legend_handles_labels()
 order = [5, 4, 3, 2, 1, 0]
-plt.legend([handles[i] for i in order], [labels[i] for i in order])
+plt.legend([handles[i] for i in order], [labels[i] for i in order], fontsize=13.5)
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure/Trend_Electricity_2010-2021"
-plt.savefig(f'{path_savefig}/barchartDetailled_spread_ElecConsoLosses.png', transparent=True, dpi=300)
-plt.show()
+print()
+
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
+plt.savefig(f'{path_savefig}/Figure11_ElecConsoLosses.png', transparent=False, dpi=300)
+# plt.show()

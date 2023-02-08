@@ -52,6 +52,8 @@ sns.lineplot(x="Year", y="Percentage %",
              hue="", style="", palette='inferno',
              data=df, markers=True, dashes=True)
 
+print(df.index)
+
 plt.title('Growth Indexes for GDP and PEC', fontweight="bold", size=15)
 
 path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure_GDP"

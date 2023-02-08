@@ -1,0 +1,332 @@
+{
+  "data": [
+    {
+      "type": "sankey",
+      "domain": {
+        "x": [
+          0,
+          1
+        ],
+        "y": [
+          0,
+          1
+        ]
+      },
+      "orientation": "h",
+      "valueformat": ".0f",
+      "valuesuffix": "TOE",
+      "node": {
+        "pad": 15,
+        "thickness": 15,
+        "line": {
+          "color": "black",
+          "width": 0.5
+        },
+        "label": [
+          "Fuel Oil",
+          "Gasoil",
+          "Gasoline",
+          "LPG",
+          "Jet A1",
+          "PUC Power Stations",
+          "Auto-Producers",
+          "Agriculture & Fishing",
+          "Marine Transportation",
+          "Road Transportation",
+          "International Marine Bunker",
+          "Service",
+          "Residential",
+          "Domestic Air Transportation",
+          "Electricity Grid",
+          "Industry",
+          "Wind",
+          "Solar PV",
+          "Energy Losses",
+          "International Air Bunker"
+        ],
+        "color": [
+          "rgba(58, 57, 56, 1)",
+          "rgba(95, 43, 28, 1)",
+          "rgba(169, 0, 130, 1)",
+          "rgba(16, 59, 110, 1)",
+          "rgba(70, 33, 43, 1)",
+          "rgba(205, 78, 20, 1)",
+          "rgba(190, 106, 73, 1)",
+          "rgba(8, 117, 169, 1)",
+          "rgba(8, 117, 169, 1)",
+          "rgba(8, 117, 169, 1)",
+          "rgba(4, 4, 4, 1)",
+          "rgba(8, 117, 169, 1)",
+          "rgba(8, 117, 169, 1)",
+          "rgba(8, 117, 169, 1)",
+          "rgba(168, 165, 2, 1)",
+          "rgba(8, 117, 169, 1)",
+          "rgba(62, 124, 59, 1)",
+          "rgba(62, 124, 59, 1)",
+          "rgba(184, 55, 40, 1)",
+          "rgba(4, 4, 4, 1)"
+        ]
+      },
+      "link": {
+        "source": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5,
+          6,
+          6,
+          14,
+          14,
+          14,
+          16,
+          17
+        ],
+        "target": [
+          5,
+          15,
+          10,
+          5,
+          6,
+          11,
+          15,
+          9,
+          8,
+          7,
+          10,
+          11,
+          15,
+          9,
+          8,
+          12,
+          11,
+          15,
+          13,
+          19,
+          14,
+          18,
+          6,
+          18,
+          12,
+          11,
+          15,
+          14,
+          14
+        ],
+        "value": [
+          78852,
+          4275.2,
+          5033.3,
+          10861,
+          16317.7,
+          3691.8,
+          2560.7,
+          11470.4,
+          2306,
+          2194.9,
+          168765.7,
+          455.3,
+          23.7,
+          21143,
+          1046.5,
+          3946,
+          1107.2,
+          288.4,
+          1869.9,
+          24673.9,
+          36474.2,
+          53238.8,
+          5662.3,
+          16317.7,
+          11932.1,
+          22840.5,
+          5432.2,
+          436.8,
+          622
+        ],
+        "color": [
+          "rgba(58, 57, 56, 0.7)",
+          "rgba(58, 57, 56, 0.7)",
+          "rgba(58, 57, 56, 0.7)",
+          "rgba(95, 43, 28, 0.7)",
+          "rgba(95, 43, 28, 0.7)",
+          "rgba(95, 43, 28, 0.7)",
+          "rgba(95, 43, 28, 0.7)",
+          "rgba(95, 43, 28, 0.7)",
+          "rgba(95, 43, 28, 0.7)",
+          "rgba(95, 43, 28, 0.7)",
+          "rgba(95, 43, 28, 0.7)",
+          "rgba(169, 0, 130, 0.7)",
+          "rgba(169, 0, 130, 0.7)",
+          "rgba(169, 0, 130, 0.7)",
+          "rgba(169, 0, 130, 0.7)",
+          "rgba(16, 59, 110, 0.7)",
+          "rgba(16, 59, 110, 0.7)",
+          "rgba(16, 59, 110, 0.7)",
+          "rgba(70, 33, 43, 0.7)",
+          "rgba(70, 33, 43, 0.7)",
+          "rgba(205, 78, 20, 0.7)",
+          "rgba(184, 55, 40, 0.7)",
+          "rgba(168, 165, 2, 0.7)",
+          "rgba(184, 55, 40, 0.7)",
+          "rgba(168, 165, 2, 0.7)",
+          "rgba(168, 165, 2, 0.7)",
+          "rgba(168, 165, 2, 0.7)",
+          "rgba(62, 124, 59, 0.7)",
+          "rgba(62, 124, 59, 0.7)"
+        ],
+        "label": []
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Energy forecast for 2050, UK \u00e2\u20ac\u201d Department of Energy & Climate Change<br>Imperfect copy of <a href='https://bost.ocks.org/mike/sankey/'>Mike Bostock's example</a><br>with numerous <a href='https://plotly.com/javascript/'>Plotly</a> features"
+    },
+    "width": 1118,
+    "height": 772,
+    "font": {
+      "size": 10
+    },
+    "updatemenus": [
+      {
+        "y": 1,
+        "buttons": [
+          {
+            "label": "Light",
+            "method": "relayout",
+            "args": [
+              "paper_bgcolor",
+              "white"
+            ]
+          },
+          {
+            "label": "Dark",
+            "method": "relayout",
+            "args": [
+              "paper_bgcolor",
+              "black"
+            ]
+          }
+        ]
+      },
+      {
+        "y": 0.9,
+        "buttons": [
+          {
+            "label": "Thick",
+            "method": "restyle",
+            "args": [
+              "node.thickness",
+              15
+            ]
+          },
+          {
+            "label": "Thin",
+            "method": "restyle",
+            "args": [
+              "node.thickness",
+              8
+            ]
+          }
+        ]
+      },
+      {
+        "y": 0.8,
+        "buttons": [
+          {
+            "label": "Small gap",
+            "method": "restyle",
+            "args": [
+              "node.pad",
+              15
+            ]
+          },
+          {
+            "label": "Large gap",
+            "method": "restyle",
+            "args": [
+              "node.pad",
+              20
+            ]
+          }
+        ]
+      },
+      {
+        "y": 0.7,
+        "buttons": [
+          {
+            "label": "Snap",
+            "method": "restyle",
+            "args": [
+              "arrangement",
+              "snap"
+            ]
+          },
+          {
+            "label": "Perpendicular",
+            "method": "restyle",
+            "args": [
+              "arrangement",
+              "perpendicular"
+            ]
+          },
+          {
+            "label": "Freeform",
+            "method": "restyle",
+            "args": [
+              "arrangement",
+              "freeform"
+            ]
+          },
+          {
+            "label": "Fixed",
+            "method": "restyle",
+            "args": [
+              "arrangement",
+              "fixed"
+            ]
+          }
+        ]
+      },
+      {
+        "y": 0.6,
+        "buttons": [
+          {
+            "label": "Horizontal",
+            "method": "restyle",
+            "args": [
+              "orientation",
+              "h"
+            ]
+          },
+          {
+            "label": "Vertical",
+            "method": "restyle",
+            "args": [
+              "orientation",
+              "v"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

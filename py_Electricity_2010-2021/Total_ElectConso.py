@@ -15,15 +15,29 @@ electricity_conso_PUC = [round(e) for e in df['Total for PUC Consumers']]
 dict_year_elec = {'Year': years, 'Electricity Consumption by PUC [GWh]': electricity_conso_PUC}
 new_df = pd.DataFrame(dict_year_elec)
 
-plt.figure(figsize=(9, 6))
-ax = sns.barplot(x=new_df['Year'], y=new_df['Electricity Consumption by PUC [GWh]'], palette='YlOrRd')
-
-
-plt.title('Total Electricity Consumption\n by PUC (excluding auto-producers)', fontweight="bold")
-
+# --------- Chart Setting --------- #
+plt.figure(figsize=(12, 9))
+sns.set(style='dark')
+plt.grid(visible=True, axis='y')
+colors = "#FFC404"
+ax = sns.barplot(x=new_df['Year'], y=new_df['Electricity Consumption by PUC [GWh]'], color=colors,)
 for container in ax.containers:
-    ax.bar_label(container)
+    ax.bar_label(container, fontsize=16, fontweight='bold')
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure/Trend_Electricity_2010-2021"
-plt.savefig(f'{path_savefig}/barchart_spread_TotalConso.png', transparent=True, dpi=300)
+# --------- Title --------- #
+plt.title('Total National Electricity Consumption', fontsize=23, fontweight='bold')
+
+
+# --------- Axis --------- #
+font_size_label = 18
+plt.xlabel('Year', fontsize=font_size_label, fontweight='bold')
+plt.xticks(rotation=0, fontsize=font_size_label)
+plt.ylim(0, 450)
+plt.ylabel('GWh', fontsize=font_size_label, fontweight='bold')
+plt.yticks(fontsize=font_size_label)
+
+
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
+plt.savefig(f'{path_savefig}/Figure7_Total_ElectConso.png', transparent=False, dpi=300)
 plt.show()
+
