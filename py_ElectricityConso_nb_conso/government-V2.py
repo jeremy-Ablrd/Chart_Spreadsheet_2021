@@ -4,6 +4,24 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
+def set_dataframe(data_f, name_col):
+    new_def_nb = pd.DataFrame([])
+    new_def2_elect = pd.DataFrame([])
+
+    for col in data_f.columns:
+        if 'Commercial & Industrial' in col or 'Residential' in col or 'Government' in col or 'Street Lights' in col:
+            new_def_nb = pd.concat([new_def_nb, data_f[col]], axis=1)
+
+        elif 'Unnamed: 2' in col or 'Unnamed: 6' in col or 'Unnamed: 9' in col or 'Unnamed: 12' in col:
+            new_def2_elect = pd.concat([new_def2_elect, df[col]], axis=1)
+
+    for i, rename in enumerate(name_col):
+        new_def_nb.rename(columns={f'{new_def_nb.columns[i]}': rename}, inplace=True)
+        new_def2_elect.rename(columns={f'{new_def2_elect.columns[i]}': rename}, inplace=True)
+
+    return new_def_nb, new_def2_elect
+
+
 def df_database(sector, df_nb, df_e):
     # convert pandas Series to pandas Dataframe (DOMESTIC SERIES)
     new_df_nb_conso = pd.DataFrame([df_nb[f'{sector}']]).T  # "T"ransposition to columns dataframe and no rows
@@ -65,23 +83,20 @@ def generate_fig_plot(sector_lim, df_nb, df_e, font, color_list):
 
     plt.legend([handles[i] for i in order], [labels[j] for j in order], loc='upper left')
 
-    # path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
-    # plt.savefig(f'{path_savefig}/figure12_15_{sector}.png', transparent=False, dpi=300)
+    path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
+    plt.savefig(f'{path_savefig}/figure12_15_{sector}.png', transparent=False, dpi=300)
 
-    # plt.show()
+    plt.show()
 
 
 # --- DATA SECTION --- #
 path = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/py_ElectricityConso_nb_conso/Data on sectorial electricity consumption-1updated.xlsx"
-file_nbConsumer = pd.read_excel(path, sheet_name="Sheet1", header=2, index_col=0)
-file_elect_conso = pd.read_excel(path, sheet_name="Sheet1", header=34, index_col=0)
+file = pd.read_excel(path, sheet_name="Sheet1", header=2, index_col=0)
 
-df_nbConsumer = file_nbConsumer.iloc[10:22, 0:4]
-df_elect_conso = file_elect_conso.iloc[10:22, 0:4]
+df = file.iloc[3:22, 0:12]
+name_sector = ['Commercial & Industrial', 'Residential', 'Government', 'Street Lights']
 
-# Rename Column Dataframe
-df_nbConsumer.rename(columns={'Domestic': 'Residential', 'Commercial/ Industrial': 'Commercial & Industrial'}, inplace=True)
-df_elect_conso.rename(columns={'Domestic': 'Residential', 'Commercial&Industrial': 'Commercial & Industrial'}, inplace=True)
+df_nbConsumer, df_elect_conso = set_dataframe(df, name_sector)
 
 # --------- Number of Consumers -------- #
 text1 = ' Nb_Consumers '
@@ -97,10 +112,11 @@ print(df_elect_conso)
 # --- VARIABLE --- #
 # list_sector and y limit on the graph
 list_s = [('Residential', 150, ['#4C72B0', '#000D7A']), ('Commercial & Industrial', 250, ['#DD8452', '#DD1900']),
-          ('Government', 60, ['#55A868', '#066F00']), ('Street lighting', 1.50, ['#F7AD19', '#B12900'])]
+          ('Government', 60, ['#55A868', '#066F00']), ('Street Lights', 1.50, ['#F7AD19', '#B12900'])]
 font_size = 16
 
 
 for list_ in list_s:
     new_df_nb, new_df_e = df_database(list_[0], df_nbConsumer, df_elect_conso)
+    print(new_df_nb)
     generate_fig_plot(list_, new_df_nb, new_df_e, font_size, list_[2])

@@ -15,27 +15,34 @@ print(df)
 
 sns.set(style='white')
 colors = ['#8F79CA']
-ax = df.plot(kind='line', stacked=False, color=colors, figsize=(12, 9))
+ax = df.plot(kind='line', stacked=False, color=colors, figsize=(12, 9), linewidth=2.7)
 
 # label_color = ['black' for c in range(len(df.columns))]
 #
 # for i, container in enumerate(ax.containers[:3]):
 #     ax.bar_label(container, color=label_color[i], label_type='center', padding=0)
 
-plt.title('Carbon Intensity of PUC Electricity Generation', fontsize=16)
-plt.grid(visible=True, axis='y')
 
-plt.xlabel('Year')
-plt.xticks(rotation=0)
-# plt.xlim(2009, 2022)
-plt.ylabel(f'{unit}')
-plt.ylim(620, 720)
+plt.grid(visible=True, axis='both')
 
+plt.title('Carbon Intensity of PUC', fontweight="bold", fontsize=22)
+
+
+font_label = 16
+
+plt.xlabel('Year', fontsize=font_label, fontweight='bold')
+plt.xticks(rotation=0, fontsize=font_label)
+
+plt.ylabel(f'{unit}', fontsize=font_label, fontweight='bold')
+plt.yticks(fontsize=font_label)
+plt.ylim(0, 1000)
 
 handles, labels = plt.gca().get_legend_handles_labels()
 order = [i for i in reversed(range(0, len(df.columns)))]
-plt.legend([handles[i] for i in order], [labels[i] for i in order])
+# plt.legend([handles[i] for i in order], [labels[i] for i in order],)
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/figure_new1"
-plt.savefig(f'{path_savefig}/Carbon_Intensity_ElectGen-linechart.png', transparent=True, dpi=300)
+ax.legend().set_visible(False)
+
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
+plt.savefig(f'{path_savefig}/Figure_Carbon_Intensity_PUC.png', transparent=False, dpi=300)
 plt.show()

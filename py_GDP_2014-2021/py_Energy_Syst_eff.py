@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import matplotlib.ticker as mtick
+
 
 """
 Line chart:
@@ -43,15 +45,29 @@ for line in list_line:
 
 print(df)
 
+sns.set(style='white')
 plt.figure(figsize=(12, 9))
 plt.grid(True)
-plt.ylim(50, 65)
-sns.lineplot(x="Year", y="Percentage %",
-             hue=None, style=None, palette='inferno',
-             data=df, markers=True, dashes=True)
+plt.ylim(0, 100)
+ax = sns.lineplot(x="Year", y="Percentage %",
+                  hue=None, style=None, palette='inferno',
+                  data=df, markers=True, dashes=True, linewidth=2.7)
 
-plt.title('Energy System Efficiency', fontweight="bold", size=15)
+ax.yaxis.set_major_formatter(mtick.PercentFormatter(decimals=0))
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure_GDP"
-plt.savefig(f'{path_savefig}/lineChart_spread_EnergySysIntensity.png', transparent=True, dpi=300)
+plt.title('Energy System Efficiency', fontweight="bold", fontsize=22)
+
+
+font_label = 16
+
+plt.xlabel('Year', fontsize=font_label, fontweight='bold')
+plt.xticks(rotation=0, fontsize=font_label)
+
+plt.ylabel("Percentage", fontsize=font_label, fontweight='bold')
+plt.yticks(fontsize=font_label)
+plt.ylim(0, 100)
+
+
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
+plt.savefig(f'{path_savefig}/Figure_Energy_Sys_Intensity.png', transparent=False, dpi=300)
 plt.show()

@@ -44,15 +44,26 @@ for line in list_line:
 
 print(df)
 
+font_label = 16
+
+sns.set(style='white')
 plt.figure(figsize=(12, 9))
 plt.grid(True)
 # plt.ylim(0, 2.5)
 sns.lineplot(x="Year", y="TOE/MSR",
              hue="", style=None, color=None, palette=None,
-             data=df, markers=False, dashes=False)
+             data=df, markers=False, dashes=False, linewidth=6.0)
 
-plt.title('Energy Intensity of the GDP', fontweight="bold", size=15)
+plt.title('Energy Intensity of the GDP', fontweight="bold", size=22)
+plt.xlabel('Year', fontsize=font_label, fontweight='bold')
+plt.xticks(fontsize=font_label)
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure_GDP"
-plt.savefig(f'{path_savefig}/lineChart_spread_EnergyIntensityGDP.png', transparent=True, dpi=300)
+plt.yticks(fontsize=font_label)
+plt.ylabel('TOE/MSR', fontsize=font_label, fontweight='bold')
+plt.ylim(0, 9)
+
+plt.legend(fontsize=12)
+
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
+plt.savefig(f'{path_savefig}/Figure_EnergyIntensityGDP.png', transparent=False, dpi=300)
 plt.show()
