@@ -26,7 +26,7 @@ ax = df.plot(kind='line', stacked=False, color=colors, figsize=(12, 9), linewidt
 
 plt.grid(visible=True, axis='both')
 
-plt.title('Carbone Intensity of PEC', fontweight="bold", fontsize=22)
+plt.title('Carbon Intensity of PEC', fontweight="bold", fontsize=22)
 
 
 font_label = 16

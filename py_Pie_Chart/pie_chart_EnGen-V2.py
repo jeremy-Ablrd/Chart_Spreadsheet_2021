@@ -1,9 +1,11 @@
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+import seaborn as sns
 from Function_PieChart_Electricity_Gen import *
 
-path = "C:/Users/jerem/PycharmProjects/pythonProject/Infography/Energy_Balance2021/Seychelles Energy Balance For 2021 - ver2 2.xlsx"
-file = pd.read_excel(path, sheet_name="Electricity Stat-2021", header=39)
+path = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Seychelles Energy Balance For 2021 - ver3.xlsx"
+file = pd.read_excel(path, sheet_name="Electricity Stat-2021", header=40)
 
 # create Dataframe "df" for the table concerned [ELECTRICITY GENERATION MIX IN PUC]
 df = file.iloc[0:4, 0:2]
@@ -11,8 +13,8 @@ df = file.iloc[0:4, 0:2]
 sum_fuel = df['GWh'][0] + df['GWh'][1]
 
 sum_fuel = pd.DataFrame(data=[('Fuel Oil & Gasoil', sum_fuel)], columns=['Technology', 'GWh'])
-auto_prod = pd.DataFrame(data=[('Auto-producer', 65.5)], columns=['Technology', 'GWh'])
-new_df = pd.concat([df, auto_prod, sum_fuel], axis=0, ignore_index=True)
+# auto_prod = pd.DataFrame(data=[('Auto-producer', 65.5)], columns=['Technology', 'GWh'])
+new_df = pd.concat([df, sum_fuel], axis=0, ignore_index=True)
 
 new_df = new_df.drop([0, 1], axis=0)
 
@@ -22,9 +24,12 @@ new_df1 = pd.concat([new_df, total], axis=0, ignore_index=True)
 new_df1['Share'] = [i/new_df1['GWh'][len(new_df1)-1] for i in new_df1['GWh']]
 
 new_df_sorted = new_df1[0:len(new_df1)-1].sort_values('GWh', ascending=False, ignore_index=True)
-
+df_sorted = df.sort_values('GWh', ascending=False, ignore_index=True)
+df_sorted['Share'] = [element/sum(df_sorted['GWh']) for element in df_sorted['GWh']]
 
 print(f"Main DataFrame:\n{df}")
+print()
+print(f"Main DataFrame sorted:\n{df_sorted}")
 print()
 print(f"DataFrame update:\n{new_df1}")
 print()
@@ -42,12 +47,32 @@ value_percent = share_percent
 print(energy_key)
 print(value_percent)
 
-colors_share = ['#566573', '#a3a3a3', '#f97316', '#16a34a']
-gap = (0, 0.0, 0.0, 0.0)
+colors_share1 = ['#007F7F', '#FAD335', '#A3B825']
+colors_share2 = ['#007F7F', '#42A0A0', '#FAD335', '#A3B825']
 wedges1 = {'linewidth': 1, 'edgecolor': 'white'}
 text1 = {'fontsize': 19, 'color': 'black'}
 
-# Call function figure(length, width):
+sns.set(style='white')
+
+
+ax1 = new_df_sorted.plot(kind='pie', y='GWh', counterclock=False, labels=None, colors=colors_share1, figsize=(9, 9))
+plt.title("Elect Generation Summary")
+plt.ylabel('')
+ax1.get_legend().remove()
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_brochure_EnergyBulletin2021"
+plt.savefig(f'{path_savefig}/Electricity_generation_summary.png', transparent=True, dpi=300)
+
+ax = df_sorted.plot(kind='pie', y='GWh', counterclock=False, labels=None, colors=colors_share2, figsize=(9, 9))
+plt.title("Elect Generation Fuel Breakdown")
+plt.ylabel('')
+ax.get_legend().remove()
+
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_brochure_EnergyBulletin2021"
+plt.savefig(f'{path_savefig}/Electricity_generation_Fuel_break.png', transparent=True, dpi=300)
+
+# plt.show()
+
+"""# Call function figure(length, width):
 figure(12, 9)
 
 # Call function pie_chart(x, labels, colors, explode)
@@ -59,6 +84,5 @@ print_text(0.55, 0.35, str(value_percent[1]) + "%", 25, "black", 'top', 'center'
 print_text(1.75, 0.18, f"({str(value_percent[2])}" + "%)", 19, "black", 'top', 'center')         #Wind
 print_text(1.85, 0.09, f"({str(value_percent[3])}" + "%)", 19, "black", 'top', 'center',)       #Solar
 
-# path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Chart"
-# plt.savefig(f'{path_savefig}/piechart_spread_EnGen.png', transparent=True, dpi=300)
-plt.show()
+
+plt.show()"""
