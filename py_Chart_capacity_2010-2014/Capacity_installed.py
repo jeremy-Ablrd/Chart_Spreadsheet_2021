@@ -49,13 +49,13 @@ font_label = 16
 plt.xlabel("Year", fontsize=font_label, fontweight='bold')
 plt.xticks(fontsize=font_label)
 # Y config
-plt.ylabel("kWh", fontsize=font_label, fontweight='bold')
+plt.ylabel("kW", fontsize=font_label, fontweight='bold')
 plt.yticks(fontsize=font_label)
 plt.grid(visible=True, axis='y')
 
 
 plt.legend(fontsize=font_label)
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
-plt.savefig(f'{path_savefig}/Figure29_Cumulative_Capacity.png', transparent=False, dpi=300)
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart_Energy_Report"
+plt.savefig(f'{path_savefig}/Figure4_Cumulative_Capacity.png', transparent=False, dpi=300)
 plt.show()

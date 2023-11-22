@@ -59,7 +59,7 @@ ax1 = new_df_sorted.plot(kind='pie', y='GWh', counterclock=False, labels=None, c
 plt.title("Elect Generation Summary")
 plt.ylabel('')
 ax1.get_legend().remove()
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_brochure_EnergyBulletin2021"
+path_savefig = "/Correction_chart_Energy_Report"
 plt.savefig(f'{path_savefig}/Electricity_generation_summary.png', transparent=True, dpi=300)
 
 ax = df_sorted.plot(kind='pie', y='GWh', counterclock=False, labels=None, colors=colors_share2, figsize=(9, 9))
@@ -67,7 +67,7 @@ plt.title("Elect Generation Fuel Breakdown")
 plt.ylabel('')
 ax.get_legend().remove()
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_brochure_EnergyBulletin2021"
+path_savefig = "/Correction_chart_Energy_Report"
 plt.savefig(f'{path_savefig}/Electricity_generation_Fuel_break.png', transparent=True, dpi=300)
 
 # plt.show()

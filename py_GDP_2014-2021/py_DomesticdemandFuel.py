@@ -48,9 +48,9 @@ for line in list_line:
     df = pd.concat([df, data_new], axis=1, ignore_index=False)
 
 print(df)
-
-sns.set(style='dark')
-colors = ['#573F06', '#704E5D', '#656543', '#AC9C61', '#68220D']
+opacity = 99
+sns.set(style='white')
+colors = [f'#573F06{opacity}', f'#704E5D{opacity}', f'#656543{opacity}', f'#AC9C61{opacity}', f'#68220D{opacity}']
 ax = df.plot(kind='bar', stacked=True, color=colors, figsize=(12, 9))
 
 label_color = ['black' for i in range(0, len(list_fuel))]
@@ -63,11 +63,11 @@ for i, container in enumerate(ax.containers[4:]):
     ax.bar_label(container, labels=contain_int, color=label_color[i], label_type='edge', padding=0, fontsize=15, fontweight='bold')
 
 
-plt.title('Total Domestic Demand', fontsize=22, fontweight='bold')
-plt.grid(visible=True, axis='y')
+plt.title('Total Domestic Fuel Demand', fontsize=22, fontweight='bold')
+plt.grid(visible=False, axis='y')
 
 plt.xlabel('Year', fontsize=16, fontweight='bold')
-plt.xticks(rotation=0, fontsize=16, fontweight='bold')
+plt.xticks(rotation=0, fontsize=16)
 # plt.xlim(2013, 2021)
 plt.ylabel('Metric Ton (MT)', fontsize=16, fontweight='bold')
 plt.yticks(fontsize=16)
@@ -77,7 +77,7 @@ handles, labels = plt.gca().get_legend_handles_labels()
 order = [4, 3, 2, 1, 0]
 plt.legend([handles[i] for i in order], [labels[i] for i in order], fontsize=12)
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
-plt.savefig(f'{path_savefig}/figure20_DomesticDemandFuel.png', transparent=False, dpi=300)
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart_Energy_Report"
+plt.savefig(f'{path_savefig}/figure22_DomesticDemandFuel.png', transparent=False, dpi=300)
 
 plt.show()

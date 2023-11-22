@@ -23,31 +23,35 @@ for line in list_line:
     df = df.round(0)
     df_final = pd.concat([df_final, df], axis=1)
 
-print(df_final)
+# Edit df_final change the last two values for gasoil
+df_final["Gasoil used by vehicles in public services"][2020] = 1226.0
+df_final["Gasoil used by vehicles in public services"][2021] = 1330.0
+
+print("DATAFRAME df_final:\n", df_final)
 
 sns.set(style='white')
-colors = ['#A25B75', '#C44E52', '#903B3F']
+colors = ['#AC9C61', '#704E5D', '#EA8555']
 ax = df_final.plot(kind='bar', stacked=True, color=colors, figsize=(12, 9))
 
 label_color = ['black' for i in range(0, len(list_line))]
 # label_color.append('#903B3F')
 #
 for i, container in enumerate(ax.containers[:]):
-    ax.bar_label(container, color=label_color[i], label_type='center', padding=0.9)
+    ax.bar_label(container, color=label_color[i], label_type='center', padding=0.9, fontsize=16, fontweight='bold')
 
-plt.title('Fuel Consumption in the Service Sector', fontsize=16)
+plt.title('Fuel Consumption in the Service Sector', fontsize=22, fontweight='bold')
 plt.grid(visible=True, axis='y')
 
-plt.xlabel('Year')
-plt.xticks(rotation=0)
-#plt.ylim(0, 320)
-plt.ylabel('TOE')
+font_label = 16
+plt.xlabel('Year', fontsize=font_label, fontweight='bold')
+plt.xticks(rotation=0, fontsize=font_label)
+plt.ylabel('TOE', fontsize=font_label, fontweight='bold')
+plt.yticks(fontsize=font_label)
 
 handles, labels = plt.gca().get_legend_handles_labels()
 order = [i for i in reversed(range(0, len(list_line)))]
-print(order)
-plt.legend([handles[i] for i in order], [labels[i] for i in order])
+plt.legend([handles[i] for i in order], [labels[i] for i in order], fontsize=12)
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure_Sector/Service"
-plt.savefig(f'{path_savefig}/BarchartDetailled_spread_FuelConso_Service.png', transparent=True, dpi=300)
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart_Energy_Report"
+plt.savefig(f'{path_savefig}/figure_28_FuelConso_Service.png', transparent=False, dpi=300)
 plt.show()

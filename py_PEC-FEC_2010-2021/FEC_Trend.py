@@ -16,15 +16,23 @@ dict_year_elec = {'Year': years, 'kTOE': fec_conso}
 new_df = pd.DataFrame(dict_year_elec)
 print(new_df)
 
-plt.figure(figsize=(9, 6))
+sns.set(style='white')
+plt.figure(figsize=(12, 9))
 ax = sns.barplot(x=new_df['Year'], y=new_df['kTOE'], palette='winter_r')
 
 for container in ax.containers:
-    ax.bar_label(container)
+    ax.bar_label(container, fontweight='bold', fontsize=16)
 
-plt.title('Final Energy Consumption', fontweight="bold")          #y=1.06
+font_label = 16
+plt.xlabel('Year', fontsize=font_label, fontweight='bold')
+plt.xticks(fontsize=font_label)
+plt.ylabel('kTOE', fontsize=font_label, fontweight='bold')
+plt.yticks(fontsize=font_label)
+plt.ylim(0, 120)
+
+plt.title('Final Energy Consumption', fontsize=22, fontweight="bold")          #y=1.06
 # plt.suptitle('or Total Primary Energy Supply (TPES)', y=0.92, x=0.51)
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure/Trend_PEC-FEC_2010-2021"
-plt.savefig(f'{path_savefig}/barchart_spread_FEC.png', transparent=True, dpi=300)
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart_Energy_Report"
+plt.savefig(f'{path_savefig}/figure36_Trend_FEC-2010-2021.png', transparent=False, dpi=300)
 plt.show()

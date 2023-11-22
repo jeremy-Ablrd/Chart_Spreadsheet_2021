@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pandas import DataFrame
+import matplotlib.ticker as mtick
 
 path = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Energy Data-PUC-2021.xlsx"
 file = pd.read_excel(path, sheet_name="Summary-PUC-2013-2021")
@@ -45,19 +46,21 @@ ax = df_final.plot(kind='line', stacked=False, color=colors, figsize=(12, 9))
 # for i, container in enumerate(ax.containers[:3]):
 #     ax.bar_label(container, color=label_color[i], label_type='center', padding=0)
 
-plt.title('Technical and Non-technical Losses on Mahe and Praslin', fontsize=16)
+plt.title('Technical and Non-technical Losses on Mahe and Praslin', fontsize=22, fontweight='bold')
 plt.grid(visible=True, axis='y')
 
-plt.xlabel('Year')
-plt.xticks(rotation=0)
-# plt.xlim(2009, 2022)
-plt.ylabel("Percentage %")
+font_label = 16
+plt.xlabel('Year', fontsize=font_label, fontweight='bold')
+plt.xticks(fontsize=font_label)
+plt.ylabel("Percentage", fontsize=font_label, fontweight='bold')
+plt.yticks(fontsize=font_label)
+ax.yaxis.set_major_formatter(mtick.PercentFormatter(decimals=0))
 plt.ylim(0, 20)
 
 handles, labels = plt.gca().get_legend_handles_labels()
 order = [i for i in reversed(range(0, len(df_final.columns)))]
-plt.legend([handles[i] for i in order], [labels[i] for i in order])
+plt.legend([handles[i] for i in order], [labels[i] for i in order], fontsize=13)
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
-plt.savefig(f'{path_savefig}/figure4_Tech-NonTech_PrasMah.png', transparent=False, dpi=300)
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart_Energy_Report"
+plt.savefig(f'{path_savefig}/figure6_Tech-NonTech_PrasMah.png', transparent=False, dpi=300)
 plt.show()

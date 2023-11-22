@@ -39,6 +39,7 @@ for i, container in enumerate(ax.containers[:]):
 plt.title('Electricity Consumption in the Residential Sector', fontsize=16)
 plt.grid(visible=True, axis='y')
 
+# plt.title(label='EMilie', fontweight='bold', fontsize=50)
 plt.xlabel('Year')
 plt.xticks(rotation=0)
 #plt.ylim(0, 320)

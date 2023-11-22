@@ -27,7 +27,7 @@ def make_chart(df_list):
     plt.setp(ax.xaxis.get_majorticklabels(), rotation=90)
 
     font_label = {'size': 17, 'weight': 'bold'}
-    font_value = 12
+    font_value = 14
     plt.title(f'Load curve for {df_name} on {df_date}', fontdict={'size': 22, 'weight': 'bold'})
 
     plt.grid(axis='x', visible=True)
@@ -47,8 +47,8 @@ def make_chart(df_list):
     plt.yticks(fontsize=font_value)
     plt.ylim(0, df_ylim)
 
-    path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart"
-    plt.savefig(f'{path_savefig}/Figure8-9_Load_curve_{df_name}.png', transparent=False, dpi=300)
+    path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart_Energy_Report"
+    plt.savefig(f'{path_savefig}/Figure10-11_Load_curve_{df_name}.png', transparent=False, dpi=300)
 
     plt.show()
 

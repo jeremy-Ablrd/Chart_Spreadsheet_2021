@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
 
@@ -25,17 +26,26 @@ new_df_fec = pd.DataFrame(dict_year_FEC)
 new_df = pd.concat([new_df_pec, new_df_fec], ignore_index=True)
 print(new_df)
 
-plt.figure(figsize=(9, 6))
-ax = sns.barplot(x='Year', y='kTOE', hue='', data=new_df, palette='inferno')
+sns.set(style='white')
+plt.figure(figsize=(12, 9))
+ax = sns.barplot(x='Year', y='kTOE', hue='', data=new_df, palette='rocket')
 plt.ylim(0, 200)
 #
 #
 for container in ax.containers:
-    ax.bar_label(container)
+    container_round = np.int_(np.round_(container.datavalues))
+    ax.bar_label(container, labels=container_round, fontweight='bold', fontsize=16)
 
-plt.title('Primary Energy vs. Final Energy Consumption', fontweight="bold")          #y=1.06
+font_label = 16
+plt.xlabel('Year', fontsize=font_label, fontweight='bold')
+plt.xticks(fontsize=font_label)
+plt.ylabel('kTOE', fontsize=font_label, fontweight='bold')
+plt.yticks(fontsize=font_label)
+
+plt.title('Primary Energy vs. Final Energy Consumption', fontsize=22, fontweight="bold")          #y=1.06
+plt.legend(fontsize=12)
 # # plt.suptitle('or Total Primary Energy Supply (TPES)', y=0.92, x=0.51)
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure/Trend_PEC-FEC_2010-2021"
-plt.savefig(f'{path_savefig}/barchart_spread_PECvsFEC.png', transparent=True, dpi=300)
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart_Energy_Report"
+plt.savefig(f'{path_savefig}/figure37_trend_PECvsFEC.png', transparent=False, dpi=300)
 plt.show()
 

@@ -12,7 +12,7 @@ import pandas as pd
 # Call file
 from pandas import DataFrame
 
-path = "C:/Users/jerem/Desktop/Energy_Balance_V2/Energy_Balance2021/Seychelles Energy Balance For 2021 - ver2 2.xlsx"
+path = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Seychelles Energy Balance For 2021 - ver2 2.xlsx"
 file = pd.read_excel(path, sheet_name="Energy Balance-2021", header=2, index_col=0)
 
 # Set file and pre-treatment of Dataframe, create data frame.

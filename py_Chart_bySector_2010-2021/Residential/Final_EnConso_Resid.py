@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import numpy as np
 
 """
 legend :
@@ -33,22 +34,23 @@ label_color = ['black' for i in range(0, 2)]
 # label_color.append('#903B3F')
 #
 for i, container in enumerate(ax.containers[:2]):
-    ax.bar_label(container, color=label_color[i], label_type='center', padding=0.9)
+    ax.bar_label(container, color=label_color[i], label_type='center', fontsize=16, fontweight='bold')
 
-plt.title('Final Energy Consumption in the Residential Sector', fontsize=16)
-plt.grid(visible=True, axis='y')
+plt.title('Final Energy Consumption in the Residential Sector', fontsize=22, fontweight='bold')
+plt.grid(visible=False, axis='y')
 
-plt.xlabel('Year')
-plt.xticks(rotation=0)
-# plt.xlim(2013, 2021)
-plt.ylabel('TOE')
+font_label = 16
+plt.xlabel('Year', fontsize=font_label, fontweight='bold')
+plt.xticks(rotation=0, fontsize=font_label)
+plt.ylabel('TOE', fontsize=font_label, fontweight='bold')
+plt.yticks(fontsize=font_label)
 
 
 handles, labels = plt.gca().get_legend_handles_labels()
 order = [i for i in reversed(range(0, len(list_line)))]
 print(order)
-plt.legend([handles[i] for i in order], [labels[i] for i in order])
+plt.legend([handles[i] for i in order], [labels[i] for i in order], fontsize=12)
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure_Sector/Residential"
-plt.savefig(f'{path_savefig}/barchartDetailled_spread_FEC-Residential.png', transparent=True, dpi=300)
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart_Energy_Report"
+plt.savefig(f'{path_savefig}/figure45_trend-Residential.png', transparent=False, dpi=300)
 plt.show()

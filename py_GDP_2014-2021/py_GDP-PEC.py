@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-import numpy as np
+import matplotlib.ticker as mtick
 
 
 """
@@ -60,19 +60,27 @@ for line in list_line:
 print(df_final)
 
 plt.figure(figsize=(12, 9))
-plt.grid(True)
 # plt.ylim(0, 2.5)
-sns.lineplot(x="Year", y="Percentage %",
-             hue="", style="", palette='inferno',
-             data=df_final, markers=True, dashes=True)
+ax = sns.lineplot(x="Year", y="Percentage %",
+                  hue="", style="", palette='inferno',
+                  data=df_final, markers=True, dashes=True)
 
-plt.title('Growth Indexes for GDP and PEC', fontweight="bold", size=15)
+ax.yaxis.set_major_formatter(mtick.PercentFormatter(decimals=0))
+
+plt.title('Growth Indexes for GDP and PEC', fontsize=22, fontweight='bold')
+plt.grid(visible=True, axis='both')
+
+font_label = 16
+plt.xlabel('Year', fontsize=font_label, fontweight='bold')
+plt.xticks(rotation=0, fontsize=font_label)
+plt.ylabel('Percentage', fontsize=font_label, fontweight='bold')
+plt.yticks(fontsize=font_label)
 
 handles, labels = plt.gca().get_legend_handles_labels()
 order = [0, 2, 1]
-plt.legend([handles[i] for i in order], [labels[i] for i in order])
+plt.legend([handles[i] for i in order], [labels[i] for i in order], fontsize=12)
 
 
-path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Figure_GDP"
-plt.savefig(f'{path_savefig}/lineChart_spread_GrowthGDP-PEC.png', transparent=True, dpi=300)
+path_savefig = "C:/Users/jerem/Desktop/Chart_Spreadsheet_2021/Correction_chart_Energy_Report"
+plt.savefig(f'{path_savefig}/figure50_Growth_indexes_GDP-PEC.png', transparent=False, dpi=300)
 plt.show()
