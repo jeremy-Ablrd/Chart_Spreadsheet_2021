@@ -1,5 +1,5 @@
 # Chart_Spreadsheet_2021
-Different chart to explain the energy transition to Seychelles, data from Spreedsheet designed for Energy Report.
+Different chart to explain the energy transition in Seychelles, data from Spreedsheet designed for Energy Report.
 
 ## Technologie utilisée
 Langage :
